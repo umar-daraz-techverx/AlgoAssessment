@@ -45,10 +45,6 @@ namespace TGS.Challenge
 	      Array.Sort(ch2);
 	     return new string(ch1).Equals(new string(ch2)) ? true : false;
       }
-
-      //TODO: Explore to see if there is not a better way to remove white space and special caracters then using Regex(Performance!!)
-
-      //Private Regex to replace empty string and special caracters in the string
       private static string RemoveSpecialCharacters(string input)
       {
 	      return Regex.Replace(input, @"[^A-Za-z]", string.Empty);
