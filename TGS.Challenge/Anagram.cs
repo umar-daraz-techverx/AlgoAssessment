@@ -28,16 +28,10 @@ namespace TGS.Challenge
 	{
 		public bool AreAnagrams(string word1, string word2)
 		{
-			if (string.IsNullOrEmpty(word1) || string.IsNullOrEmpty(word2))
-			{
-				throw new ArgumentException($"Neither string values can be null or empty to test a valid anagram");
-			}
-
+			if (string.IsNullOrEmpty(word1) || string.IsNullOrEmpty(word2)) throw new ArgumentException($"Neither string values can be null or empty to test a valid anagram");
 			word1 = RemoveSpecialCharacters(word1);
 			word2 = RemoveSpecialCharacters(word2);
-			if (word1.Length != word2.Length) return false;
-			return string.Concat(word1.ToLower().OrderBy(c => c)).Equals(string.Concat(word2.ToLower().OrderBy(c => c)));
-
+			return word1.Length == word2.Length && string.Concat(word1.ToLower().OrderBy(c => c)).Equals(string.Concat(word2.ToLower().OrderBy(c => c)));
 		}
 		private static string RemoveSpecialCharacters(string input)
 		{
