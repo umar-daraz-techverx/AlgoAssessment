@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace TGS.Challenge
 {
@@ -24,9 +25,33 @@ namespace TGS.Challenge
      */
     public class FormatNumber
     {
-        public string Format(int value)
+	    /* min value constraint */
+	    private const int MinValue = 0;
+
+	    /* max value constraint */
+	    private const int MaxValue = 1000000000;
+
+	    /* the thousands seperator character */
+	    private const char ThousandsSeparator = ',';
+
+	    public string Format(int value)
         {
-            return string.Empty;
+	        /* ensure given value is within the constraints bounds */
+	        if (value < MinValue || value > MaxValue)
+	        {
+		        throw new ArgumentOutOfRangeException();
+	        }
+
+            /* insert the thousands separator */
+            var builder = new StringBuilder(value.ToString());
+
+	        for (var i = builder.Length - 3; i > 0; i -= 3)
+	        {
+		        builder.Insert(i, ThousandsSeparator);
+	        }
+
+	        /* return the formatted string */
+	        return builder.ToString();
         }
     }
 }
